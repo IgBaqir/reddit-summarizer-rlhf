@@ -1,0 +1,94 @@
+# Configuration file for Reddit Summarizer RLHF
+
+# Model Configuration
+model:
+  base_model: "gpt2"  # Start with GPT-2 small for faster iteration
+  max_length: 512
+  summary_max_length: 128
+  temperature: 0.7
+  top_p: 0.9
+
+# Training Configuration
+training:
+  batch_size: 8
+  learning_rate: 5e-5
+  num_epochs: 3
+  gradient_accumulation_steps: 4
+  warmup_steps: 100
+  weight_decay: 0.01
+  fp16: true
+  save_steps: 500
+  eval_steps: 250
+  logging_steps: 50
+
+# SFT Configuration
+sft:
+  learning_rate: 5e-5
+  num_epochs: 3
+  max_grad_norm: 1.0
+
+# Reward Model Configuration
+reward_model:
+  learning_rate: 1e-5
+  num_epochs: 5
+  comparison_batch_size: 16
+
+# PPO Configuration
+ppo:
+  learning_rate: 1e-6
+  clip_epsilon: 0.2
+  gamma: 0.99
+  lam: 0.95
+  kl_coef: 0.1
+  value_coef: 0.5
+  entropy_coef: 0.01
+  max_ppo_epochs: 4
+  ppo_batch_size: 4
+  mini_batch_size: 2
+  generation_batch_size: 8
+
+# Reddit API Configuration
+reddit:
+  subreddits:
+    - "AskReddit"
+    - "explainlikeimfive"
+    - "todayilearned"
+    - "worldnews"
+  posts_per_subreddit: 100
+  max_comments_per_post: 10
+  min_post_length: 200
+  max_post_length: 2000
+
+# Data Configuration
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  min_summary_length: 20
+  max_summary_length: 128
+
+# Evaluation Configuration
+evaluation:
+  rouge_types: ["rouge1", "rouge2", "rougeL"]
+  num_eval_samples: 100
+
+# Interface Configuration
+interface:
+  port: 7860
+  share: false
+  max_examples: 10
+
+# Logging Configuration
+logging:
+  use_wandb: true
+  wandb_project: "reddit-summarizer-rlhf"
+  log_dir: "./logs"
+  tensorboard_dir: "./runs"
+
+# Paths
+paths:
+  data_dir: "./data"
+  model_dir: "./models"
+  checkpoint_dir: "./checkpoints"
+  output_dir: "./outputs"
+

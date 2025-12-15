@@ -1,0 +1,37 @@
+# Core ML Libraries
+torch>=2.0.0
+transformers>=4.30.0
+accelerate>=0.20.0
+datasets>=2.12.0
+
+# RLHF Framework
+# Note: OpenRLHF may need to be installed from source or use trlx as alternative
+# trlx>=0.5.0  # Alternative RLHF framework
+
+# Reddit API
+praw>=7.7.0
+
+# Evaluation
+rouge-score>=0.1.2
+numpy>=1.24.0
+
+# Web Interface
+gradio>=3.35.0
+streamlit>=1.24.0  # Alternative to Gradio
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Logging and Tracking
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Utilities
+tqdm>=4.65.0
+requests>=2.31.0
+
+# Optional: For better performance
+# bitsandbytes>=0.41.0  # For 8-bit training
+# flash-attn>=2.0.0  # For faster attention (requires CUDA)
+
